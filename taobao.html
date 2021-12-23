@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!-- 测试环境：idea + chrome(96.0.4664.110 64位)/Microsoft Edge(96.0.1054.57 (64 位)) -->
+<head>
+    <meta charset="UTF-8">
+    <title>淘宝网 - 淘！我喜欢</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet"  type="text/css"  href="tb.css" >
+    <script src="jquery.min.js">
+    </script>
+    <script>
+        //下拉栏：天猫/店铺显示
+        $(document).ready(function(){
+            $("#yourdiv").hover(
+                function(){
+                $(this).addClass("triggers-hover");})
+                ,$("#yourdiv").mouseleave(function(){
+                $(this).removeClass("triggers-hover");})
+            })
+    </script>
+    <script>
+        //监听滚动条，当页面划过搜索栏则切出新搜索栏
+        $(document).ready(function () {
+            var getclass = $('.search-hots-fline');
+            if (getclass.length) {
+                var offSet = getclass.offset().top;
+                // console.log(offSet);
+            } else alert(getclass.length);
+            $(window).scroll(function () {
+                //为了保证兼容性，这里取两个值，哪个有值取哪一个
+                //scrollTop就是触发滚轮事件时滚轮的高度
+                //body和html不可以设置高度100%，不然会使得监听器失效
+                if ($(window).scrollTop() > offSet) {
+                    // console.log($(window).scrollTop())
+                    $('#search-bar').addClass("wrap-fixed");
+                }
+                else{
+                    $('#search-bar').removeClass("wrap-fixed");
+                }
+            })
+        })
+    </script>
+    <script>
+        //返回顶部
+        $(function (){
+            $(".gotop").click(function (){
+                $("html,body").animate({scrollTop: 0}, 400);
+            })
+        })
+    </script>
+    <script>
+        //滑动到品质好货
+        $(function (){
+            $(".fixedtool-1").click(function (){
+                $("html,body").animate({scrollTop:670}, 400);
+            })
+        })
+    </script>
+    <script>
+        //滑动到猜你喜欢
+        $(function (){
+            $(".fixedtool-6").click(function (){
+                $("html,body").animate({scrollTop:1010}, 400);
+            })
+        })
+    </script>
+    <script>
+        //监听滚动条，滑动到猜你喜欢时将右侧浮动条动效改变
+        //先计算到猜你喜欢的距离
+        $(document).ready(function () {
+            var getclass = $('#cnxh');
+            if (getclass.length) {
+                var offSet = getclass.offset().top;
+                // console.log(offSet);
+            } else alert(getclass.length);
+            $(window).scroll(function () {
+                //为了保证兼容性，这里取两个值，哪个有值取哪一个
+                //scrollTop就是触发滚轮事件时滚轮的高度
+                //body和html不可以设置高度100%，不然会使得监听器失效
+                // console.log($(window).scrollTop());
+                if ($(window).scrollTop() > offSet-65) {
+                    // console.log($(window).scrollTop())
+                    $('.fixedtool-6').addClass("on");
+                    $('.fixedtool-1').removeClass("on")
+                }
+                else{
+                    $('.fixedtool-6').removeClass("on");
+                    $('.fixedtool-1').addClass("on")
+                }
+                if ($(window).scrollTop() < offSet-200){
+                    $(".fixedtool-7").css({"display":"none"});
+                }
+                else $(".fixedtool-7").css({"display":""});
+                if ($(window).scrollTop() > 400){
+                    $(".fixedtool").css({"position":"fixed","top":"40px"});
+                }
+                else $(".fixedtool").css({"position":"","top":"439.667px"});
+            })
+        })
+    </script>
+</head>
+<body>
+<!--顶部菜单栏设计-->
+<div class="tb">
+    <div class="top_left bs hidden top-wrap a_cursor">
+            <li style="display: inline; justify-content: center; float: left;
+            width: 75px;height: 35px;
+            text-align: center;"><a>中国大陆</a><svg t="1639635370540" viewBox="0 0 1603 1024" version="1.1" p-id="26090" width="5" height="5" style="margin-left: 6px;transform: translateY(-2px);">
+                <path d="M1010.042131 836.203222L837.472119 1008.773234c-18.610492 18.610492-50.755886 18.610492-71.05824 0
+                L15.226766 255.894259c-18.610492-18.610492-18.610492-50.755886 0-71.058241L187.796778 13.957869c18.610492-18.610492 50.755886-18.610492 71.058241 0l751.187112 751.187112c18.610492 20.302354 18.610492 52.447749 0 71.058241z" p-id="26091" fill="#9c9c9c"></path>
+                <path d="M1416.089219 13.957869L1588.659232 186.527881c18.610492 18.610492 18.610492 50.755886 0 71.05824L835.780256 1008.773234c-18.610492 18.610492-50.755886 18.610492-71.05824 0
+                L593.843866 836.203222c-18.610492-18.610492-18.610492-50.755886 0-71.058241L1346.722842 13.957869c18.610492-18.610492 50.755886-18.610492 69.366377 0z" p-id="26092" fill="#9c9c9c"></path></svg>
+                <ul class ="down_blank">
+                    <div style="height: 100px;width: 255px; overflow:scroll;overflow-x: hidden;">
+                        <div style="border: 1px  #706e6e; width: 100%; margin: 0 auto;">
+                            <li><a>&nbsp;全球</a></li>
+                            <li><a>&nbsp;中国大陆</a></li>
+                            <li><a>&nbsp;中国香港</a></li>
+                            <li><a>&nbsp;中国台湾</a></li>
+                            <li><a>&nbsp;中国澳门</a></li>
+                            <li><a>&nbsp;韩国</a></li>
+                            <li><a>&nbsp;马来西亚</a></li>
+                       </div>
+                    </div>
+                </ul>
+            </li>
+        <span style="color: #ff5000;cursor: pointer;">&nbsp;亲，请登录</span>
+        <a>免费注册</a>
+        <a>&nbsp;手机逛淘宝</a>
+        <a>&nbsp;网页无障碍</a>
+        <div style="position: absolute;top: 0;right: 1px;">
+            <li style="display: inline; justify-content: center; float: left;
+            width: 80px;height: 35px;
+            text-align: center;"><a>我的淘宝</a><svg t="1639635370540" viewBox="0 0 1603 1024" version="1.1" p-id="26090" width="5" height="5" style="margin-left: 6px;transform: translateY(-2px);">
+                <path d="M1010.042131 836.203222L837.472119 1008.773234c-18.610492 18.610492-50.755886 18.610492-71.05824 0
+                L15.226766 255.894259c-18.610492-18.610492-18.610492-50.755886 0-71.058241
+                L187.796778 13.957869c18.610492-18.610492 50.755886-18.610492 71.058241 0l751.187112 751.187112c18.610492 20.302354 18.610492 52.447749 0 71.058241z" p-id="26091" fill="#9c9c9c"></path>
+                <path d="M1416.089219 13.957869L1588.659232 186.527881c18.610492 18.610492 18.610492 50.755886 0 71.05824
+                L835.780256 1008.773234c-18.610492 18.610492-50.755886 18.610492-71.05824 0
+                L593.843866 836.203222c-18.610492-18.610492-18.610492-50.755886 0-71.058241L1346.722842 13.957869c18.610492-18.610492 50.755886-18.610492 69.366377 0z" p-id="26092" fill="#9c9c9c"></path></svg>
+                <ul class ="down_blank_right">
+                    <li style="width: 88px"><a style="margin:0 3px;padding: 0 5px;">已买到的宝贝</a></li>
+                    <li style="width: 88px"><a style="margin:0 3px;padding: 0 5px;">我的足迹</a></li>
+                </ul>
+            </li>
+            <i class="nobs" style="font-style: normal">
+            <li style="display: inline; justify-content: center; float: left;
+            width: 75px;height: 35px;
+            text-align: center;"><a>
+                <svg t="1639634564272" viewBox="0 0 1024 1024" version="1.1" p-id="11164" width="13" height="13" fill="#f40" style="transform: translate(1px,2px);">
+                    <path d="M919.84384 210.41664H241.17248L229.40672 113.3568c-1.92-15.83616-16.5376-28.79488-32.49664-28.79488
+                    H190.464c-2.72384 0-5.30944 0.384-7.7312 1.09056H99.77344c-19.14368 0-34.81088 14.3616-34.81088 31.90784s15.6672 31.90784 34.816 31.90784
+                    H169.3184L235.7248 697.344c1.92 15.84128 16.54272 28.8 32.49664 28.8h6.4512c2.69312 0 5.25824-0.37888 7.6544-1.07008h548.82304
+                    c19.14368 0 34.80576-14.35648 34.80576-31.90784 0-17.55136-15.66208-31.90784-34.80576-31.90784
+                    H295.81824l-8.13056-67.11296h545.1776c15.95392 0 31.89248-12.72832 35.42016-28.288l74.15296-327.14752c3.52768-15.55456-6.64064-28.288-22.59456-28.288z
+                    M294.58944 865.72032c0 42.8032 34.70336 77.51168 77.51168 77.51168s77.50656-34.70336 77.50656-77.5168c0-42.8032-34.69824-77.50656-77.50656-77.50656s-77.5168 34.70336-77.5168 77.51168z
+                    m384.23552 0c0 42.8032 34.70336 77.51168 77.5168 77.51168s77.50656-34.70336 77.50656-77.5168c0-42.8032-34.70336-77.50656-77.51168-77.50656-42.8032 0-77.51168 34.70336-77.51168 77.51168z" p-id="11165"></path></svg>
+                购物车</a></li>
+            </i>
+            <li style="display: inline; justify-content: center; float: left;idth: 75px;height: 35px;text-align: center;">
+                <a>
+                    <!--svg颜色用currentcolor，后期可以实现动态变色效果-->
+                    <svg t="1639632668798" viewBox="0 0 1024 1024" version="1.1" p-id="1938" width="11" height="11" fill="currentcolor" style="transform: translateY(1px);">
+                        <path d="M781.186088 616.031873q17.338645 80.573705 30.59761 145.848606 6.119522 27.537849 11.219124 55.075697t9.689243 49.976096 7.649402 38.247012 4.079681 19.888446q3.059761 20.398406-9.179283 27.027888t-27.537849 6.629482q-5.099602 0-14.788845-3.569721t-14.788845-5.609562l-266.199203-155.027888q-72.414343 42.836653-131.569721 76.494024-25.498008 14.278884-50.486056 28.557769t-45.386454 26.517928-35.187251 20.398406-19.888446 10.199203q-10.199203 5.099602-20.908367 3.569721t-19.378486-7.649402-12.749004-14.788845-2.039841-17.848606q1.01992-4.079681 5.099602-19.888446t9.179283-37.737052 11.729084-48.446215 13.768924-54.055777q15.298805-63.23506 34.677291-142.788845-60.175299-52.015936-108.111554-92.812749-20.398406-17.338645-40.286853-34.167331t-35.697211-30.59761-26.007968-22.438247-11.219124-9.689243q-12.239044-11.219124-20.908367-24.988048t-6.629482-28.047809 11.219124-22.438247 20.398406-10.199203l315.155378-28.557769 117.290837-273.338645q6.119522-16.318725 17.338645-28.047809t30.59761-11.729084q10.199203 0 17.848606 4.589641t12.749004 10.709163 8.669323 12.239044 5.609562 10.199203l114.231076 273.338645 315.155378 29.577689q20.398406 5.099602 28.557769 12.239044t8.159363 22.438247q0 14.278884-8.669323 24.988048t-21.928287 26.007968z" p-id="1939"></path></svg>
+                    收藏夹</a><svg t="1639635370540" viewBox="0 0 1603 1024" version="1.1" p-id="26090" width="5" height="5" style="margin-left: 6px;transform: translateY(-2px);">
+                <path d="M1010.042131 836.203222L837.472119 1008.773234c-18.610492 18.610492-50.755886 18.610492-71.05824 0
+                L15.226766 255.894259c-18.610492-18.610492-18.610492-50.755886 0-71.058241
+                L187.796778 13.957869c18.610492-18.610492 50.755886-18.610492 71.058241 0l751.187112 751.187112c18.610492 20.302354 18.610492 52.447749 0 71.058241z" p-id="26091" fill="#9c9c9c"></path>
+                <path d="M1416.089219 13.957869L1588.659232 186.527881c18.610492 18.610492 18.610492 50.755886 0 71.05824L835.780256 1008.773234c-18.610492 18.610492-50.755886 18.610492-71.05824 0
+                L593.843866 836.203222c-18.610492-18.610492-18.610492-50.755886 0-71.058241L1346.722842 13.957869c18.610492-18.610492 50.755886-18.610492 69.366377 0z" p-id="26092" fill="#9c9c9c"></path></svg>
+                <ul class ="down_blank_right">
+                    <li style="text-align: center"><a style="margin:0 3px">收藏的宝贝</a></li>
+                    <li style="text-align: center"><a style="margin:0 3px">收藏的店铺</a></li>
+                </ul>
+            </li>
+            <i class="nobs" style="font-style: normal">
+                <li style="display: inline; justify-content: center; float: left;
+            width: 75px;height: 35px;
+            text-align: center;"><a>&nbsp;商品分类</a></li>
+            </i>
+            <i class="tb-footer nobs" style="font-style: normal">
+                <li style="display: inline; justify-content: center; float: left;
+            text-align: center;"><b>|</b></li>
+            </i>
+            <li style="display: inline; justify-content: center; float: left;
+            width: 100px;height: 35px;
+            text-align: center;"><a>千牛卖家中心</a><svg t="1639635370540" viewBox="0 0 1603 1024" version="1.1" p-id="26090" width="5" height="5" style="margin-left: 6px;transform: translateY(-2px);">
+                <path d="M1010.042131 836.203222L837.472119 1008.773234c-18.610492 18.610492-50.755886 18.610492-71.05824 0
+                L15.226766 255.894259c-18.610492-18.610492-18.610492-50.755886 0-71.058241L187.796778 13.957869c18.610492-18.610492 50.755886-18.610492 71.058241 0l751.187112 751.187112c18.610492 20.302354 18.610492 52.447749 0 71.058241z" p-id="26091" fill="#9c9c9c"></path>
+                <path d="M1416.089219 13.957869L1588.659232 186.527881c18.610492 18.610492 18.610492 50.755886 0 71.05824
+                L835.780256 1008.773234c-18.610492 18.610492-50.755886 18.610492-71.05824 0L593.843866 836.203222c-18.610492-18.610492-18.610492-50.755886 0-71.058241L1346.722842 13.957869c18.610492-18.610492 50.755886-18.610492 69.366377 0z" p-id="26092" fill="#9c9c9c"></path></svg>
+                <ul class ="down_blank_right">
+                    <li style="width: 89px"><a style="margin:0 3px;padding: 0 5px">免费开店</a></li>
+                    <li style="width: 89px"><a style="margin:0 3px;padding: 0 5px">已卖出的宝贝</a></li>
+                    <li style="width: 89px"><a style="margin:0 3px;padding: 0 5px">出售中的宝贝</a></li>
+                    <li style="width: 89px"><a style="margin:0 3px;padding: 0 5px">卖家服务市场</a></li>
+                    <li style="width: 89px"><a style="margin:0 3px;padding: 0 5px">卖家培训中心</a></li>
+                    <li style="width: 89px"><a style="margin:0 3px;padding: 0 5px">体检中心</a></li>
+                    <li style="width: 89px"><a style="margin:0 3px;padding: 0 5px">问商友</a></li>
+                </ul>
+            </li>
+            <li style="display: inline; justify-content: center; float: left;
+            width: 80px;height: 35px;
+            text-align: center;"><a>联系客服</a><svg t="1639635370540" viewBox="0 0 1603 1024" version="1.1" p-id="26090" width="5" height="5" style="margin-left: 6px;transform: translateY(-2px);">
+                <path d="M1010.042131 836.203222L837.472119 1008.773234c-18.610492 18.610492-50.755886 18.610492-71.05824 0
+                L15.226766 255.894259c-18.610492-18.610492-18.610492-50.755886 0-71.058241L187.796778 13.957869c18.610492-18.610492 50.755886-18.610492 71.058241 0
+                l751.187112 751.187112c18.610492 20.302354 18.610492 52.447749 0 71.058241z" p-id="26091" fill="#9c9c9c"></path>
+                <path d="M1416.089219 13.957869L1588.659232 186.527881c18.610492 18.610492 18.610492 50.755886 0 71.05824
+                L835.780256 1008.773234c-18.610492 18.610492-50.755886 18.610492-71.05824 0L593.843866 836.203222c-18.610492-18.610492-18.610492-50.755886 0-71.058241L1346.722842 13.957869c18.610492-18.610492 50.755886-18.610492 69.366377 0z" p-id="26092" fill="#9c9c9c"></path></svg>
+                <ul class ="down_blank_right">
+                    <li style="width: 78px"><a style="margin:0 3px;padding: 0 5px">消费者客服</a></li>
+                    <li style="width: 78px"><a style="margin:0 3px;padding: 0 5px">卖家客服</a></li>
+                </ul>
+            </li>
+        </div>
+    </div>
+</div>
+<!--搜索栏-->
+<div class="cup J_Cup search-fixed" id="search-bar">
+    <div class="top J_Top">
+        <div class="top-wrap clearfix">
+            <div class="logo">
+                <h1 style="margin:0"><a class="logo-bd clearfix" href="//www.taobao.com" role="img">淘宝网</a></h1>
+            </div>
+        <div class="h-search">
+            <div style="position: relative">
+                <div class="search-bd" >
+                    <div class="search-triggers" id="yourdiv" >
+                       <ul>
+                           <li class="selected">宝贝</li><div class="search-tab-icon"><i><em></em><span></span></i></div>
+                           <li>天猫</li>
+                           <li>店铺</li>
+                       </ul>
+                    </div>
+                    <div>
+                        <form action="" method="GET" style="margin-left: 74px;
+                        border-left: 1px solid #f5f5f5;line-height: 40px">
+                            <input type="text" class="sousuo">
+                            <input type="submit" value="搜索" class="submitbottom">
+                        </form>
+                    </div>
+                </div>
+                <div class="search-ft clearfix" >
+                    <div class="search-hots-lines">
+                        <div class="search-hots-fline">
+                            <a>新款连衣裙</a>
+                            <a>四件套</a>
+                            <a style="color: rgb(255,80,0)">潮流T恤</a>
+                            <a>时尚女鞋</a>
+                            <a>短裤</a>
+                            <a>半身裙</a>
+                            <a>男士外套</a>
+                            <a>墙纸</a>
+                            <a>行车记录仪</a>
+                            <a>新款男鞋</a>
+                            <a>耳机</a>
+                            <a>时尚女包</a>
+                            <a>沙发</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="tbh-qr-wrapper">
+                <div class="tbh-qr">
+                    <div class="qr">
+                        <a href="https://market.m.taobao.com/app/fdilab/download-page/main/index.html?spm=a21bo.jianhua.201858.1.5af911d9dzSlP3" class="qr-bd clearfix">
+                            <span class="h">下载淘宝</span>
+                            <img src="img/qr_code.png">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="tbh-nav">
+    <div class="nav clearfix">
+        <h2>主题市场</h2>
+        <ul class="nav-hd">
+            <li style=" color:#FF0036"><a>天猫</a></li>
+            <li style=" color:#FF0036"><a>聚划算</a></li>
+            <li style=" color:#33c900"><a>天猫超市</a></li>
+        </ul>
+
+        <ul class="nav-bd">
+            <li>|</li>
+            <li><a>司法拍卖</a></li>
+            <li><a>飞猪旅行</a></li>
+            <li><a>天天特卖</a></li>
+            <li>|</li>
+            <li><a>造点新货</a></li>
+            <li><a>苏宁易购</a></li>
+            <li><a>淘宝心选</a></li>
+            <li><a>智能生活</a></li>
+        </ul>
+    </div>
+</div>
+<div class="screen-outer clearfix">
+    <div class="main">
+        <div class="clearfix">
+            <div style="float:left;height: 526px;position: relative;font-size: 14px;color: #fff;width: 212px;">
+                <ul class="service-bd">
+                    <li>
+                        <svg width="16" height="16" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16" style="margin-right: 6px;
+    height: 15px;">
+                            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
+                        </svg>
+                        <a href="taobao.html">女装</a><span>/</span>
+                        <a href="taobao.html">内衣</a><span>/</span>
+                        <a href="taobao.html">家居</a>
+                    </li>
+                    <li>
+                        <svg width="16" height="16" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16" style="margin-right: 6px;
+    height: 15px;">
+                            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
+                        </svg>
+                        <a href="taobao.html">女鞋</a><span>/</span>
+                        <a href="taobao.html">男鞋</a><span>/</span>
+                        <a href="taobao.html">箱包</a>
+                    </li>
+                    <li>
+                        <svg width="16" height="16" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16" style="margin-right: 6px;
+    height: 15px;">
+                            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
+                        </svg>
+                        <a href="taobao.html">母婴</a><span>/</span>
+                        <a href="taobao.html">童装</a><span>/</span>
+                        <a href="taobao.html">玩具</a>
+                    </li>
+                    <li>
+                        <svg width="16" height="16" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16" style="margin-right: 6px;
+    height: 15px;">
+                            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
+                        </svg>
+                        <a href="taobao.html">女装</a><span>/</span>
+                        <a href="taobao.html">内衣</a><span>/</span>
+                        <a href="taobao.html">家居</a>
+                    </li>
+                    <li>
+                        <svg width="16" height="16" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16" style="margin-right: 6px;
+    height: 15px;">
+                            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
+                        </svg>
+                        <a href="taobao.html">女装</a><span>/</span>
+                        <a href="taobao.html">内衣</a><span>/</span>
+                        <a href="taobao.html">家居</a>
+                    </li>
+                    <li>
+                        <svg width="16" height="16" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16" style="margin-right: 6px;
+    height: 15px;">
+                            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
+                        </svg>
+                        <a href="taobao.html">女装</a><span>/</span>
+                        <a href="taobao.html">内衣</a><span>/</span>
+                        <a href="taobao.html">家居</a>
+                    </li>
+                    <li>
+                        <svg width="16" height="16" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16" style="margin-right: 6px;
+    height: 15px;">
+                            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
+                        </svg>
+                        <a href="taobao.html">女装</a><span>/</span>
+                        <a href="taobao.html">内衣</a><span>/</span>
+                        <a href="taobao.html">家居</a>
+                    </li>
+                    <li>
+                        <svg width="16" height="16" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16" style="margin-right: 6px;
+    height: 15px;">
+                            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
+                        </svg>
+                        <a href="taobao.html">女装</a><span>/</span>
+                        <a href="taobao.html">内衣</a><span>/</span>
+                        <a href="taobao.html">家居</a>
+                    </li>
+                    <li>
+                        <svg width="16" height="16" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16" style="margin-right: 6px;
+    height: 15px;">
+                            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
+                        </svg>
+                        <a href="taobao.html">女鞋</a><span>/</span>
+                        <a href="taobao.html">男鞋</a><span>/</span>
+                        <a href="taobao.html">箱包</a>
+                    </li>
+                    <li>
+                        <svg width="16" height="16" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16" style="margin-right: 6px;
+    height: 15px;">
+                            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
+                        </svg>
+                        <a href="taobao.html">母婴</a><span>/</span>
+                        <a href="taobao.html">童装</a><span>/</span>
+                        <a href="taobao.html">玩具</a>
+                    </li>
+                    <li>
+                        <svg width="16" height="16" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16" style="margin-right: 6px;
+    height: 15px;">
+                            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
+                        </svg>
+                        <a href="taobao.html">女装</a><span>/</span>
+                        <a href="taobao.html">内衣</a><span>/</span>
+                        <a href="taobao.html">家居</a>
+                    </li>
+                    <li>
+                        <svg width="16" height="16" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16" style="margin-right: 6px;
+    height: 15px;">
+                            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
+                        </svg>
+                        <a href="taobao.html">女装</a><span>/</span>
+                        <a href="taobao.html">内衣</a><span>/</span>
+                        <a href="taobao.html">家居</a>
+                    </li>
+                    <li>
+                        <svg width="16" height="16" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16" style="margin-right: 6px;
+    height: 15px;">
+                            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
+                        </svg>
+                        <a href="taobao.html">女装</a><span>/</span>
+                        <a href="taobao.html">内衣</a><span>/</span>
+                        <a href="taobao.html">家居</a>
+                    </li>
+                    <li>
+                        <svg width="16" height="16" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16" style="margin-right: 6px;
+    height: 15px;">
+                            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
+                        </svg>
+                        <a href="taobao.html">手表</a><span>/</span>
+                        <a href="taobao.html">眼镜</a><span>/</span>
+                        <a href="taobao.html">珠宝饰品</a>
+                    </li>
+                </ul>
+            </div>
+<!--                <div class="core">-->
+<!--                    <div class="promo-bd" style="width: 520px;overflow: hidden;height: 280px;">-->
+<!--                        <img src="img/img1.jpg" style="display: block;border-radius: 12px;">-->
+<!--                    </div>-->
+<!--                </div>-->
+            <script src="./taobao.js"></script>
+            <div class="core">
+                <div class="box">
+                    <div class="box-1">
+                        <ul>
+                            <li style="display: none;">
+                                <img src="./img/img1.jpg" alt="这里是第一张图片">
+                            </li>
+                            <li style="display: none;">
+                                <img src="./img/img2.jpg" alt="这里是第二张图片">
+                            </li>
+                            <li style="display: none;">
+                                <img src="./img/img3.jpg" alt="这里是第三张图片">
+                            </li>
+                            <li style="display: block;">
+                                <img src="./img/img4.jpg" alt="这里是第四张图片">
+                            </li>
+                            <li style="display: block;">
+                                <img src="./img/img5.jpg" alt="这里是第五张图片">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="box-2">
+                        <ul><li class="on">1</li><li class="">2</li><li class="">3</li><li class="">4</li><li class="">5</li></ul>
+                    </div>
+                    <div class="box-3">
+                        <span class="prev"> &lt; </span>
+                        <span class="next"> &gt; </span>
+                    </div>
+                </div>
+                <div class="Tmall">
+                    <div class="Tmall-title">
+                        <img src="./img/tmall.png" alt="">
+                        <span>理想生活上天猫</span>
+                        <strong style="float: right;line-height: 20px;margin-top: 10px;
+                        font-family: sans-serif;font-size: 12px;font-weight: 400;">
+                            <i style="color: #ff1648;font-style: normal;">3</i>/5</strong>
+                    </div>
+                    <div class="Tmall-detail">
+                        <img src="./img/tm1.jpg" alt="">
+                        <img src="./img/tm2.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-right">
+        <div style="background-color: #F3F3F3;">
+            <div class="member-bd">
+                <div class="avatar-wrapper">
+                    <a>
+                        <img  class="member-avatar" src="img/getAvatar.jpg">
+                    </a>
+                </div>
+                <div class="normalcolorbs">
+                    <a>
+                        <span class="member-nick-info">Hi!
+                        <strong>你好</strong></span>
+                    </a>
+                </div>
+            </div>
+            <div class="member-ft">
+                <div class="member-logout">
+                    <a style="width:128px;" href="taobao.html">登录</a>
+                    <a href="taobao.html">注册</a>
+                    <a href="taobao.html">开店</a>
+                </div>
+            </div>
+            <div class="tbh-tip">
+                <div>
+                    <a href="taobao.html">
+                        <img src="img/loginright.png">
+                    </a>
+                </div>
+            </div>
+            <div class="tbh-notice">
+                <div class="notice-top">
+                    <span class="notice-title">公告</span><span class="notice-desc">新鲜事儿都在这里～</span>
+                </div>
+                <div class="notice-content">
+                        <a href="taobao.html">
+                          <div class="notice-tip">规则</div>
+                        </a>
+                        <a href="taobao.html">
+                          <p>2021年淘宝12.12招商规则</p>
+                        </a>
+                </div>
+                <div class="notice-content">
+                        <a href="taobao.html">
+                          <div class="notice-tip">热点</div>
+                        </a>
+                        <a href="taobao.html">
+                          <p>关于推进“清朗”账号乱象专项整治的通知</p>
+                        </a>
+                </div>
+                <div class="notice-content">
+                        <a href="taobao.html">
+                          <div class="notice-tip">热点</div>
+                        </a>
+                        <a href="taobao.html">
+                          <p>《大学生课业减负管理规则》规则变更通知</p>
+                        </a>
+                </div>
+            </div>
+            <div class="tbh-mytao normalcolorbs">
+                <div class="mytao-content">
+                    <a href="taobao.html">
+                        <span class="tb-ifont mytao-icon">1</span>
+                        <p>收藏的宝贝</p>
+                    </a>
+                </div>
+                <div class="mytao-content">
+                    <a href="taobao.html">
+                        <span class="tb-ifont mytao-icon">2</span>
+                        <p>买过的店铺</p>
+                    </a>
+                </div>
+                <div class="mytao-content">
+                    <a href="taobao.html">
+                        <span class="tb-ifont mytao-icon">3</span>
+                        <p>收藏的店铺</p>
+                    </a>
+                </div>
+                <div class="mytao-content" style="margin-right:0">
+                    <a href="taobao.html">
+                        <span class="tb-ifont mytao-icon">4</span>
+                        <p>我的足迹</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--右侧悬浮条-->
+<div class="fixedtool" style="position: absolute;top: 439.667px;display: block;transition: none 0s ease 0s;">
+    <span class="tb-ifont wangwang">
+        <svg t="1639630250759" viewBox="0 0 1024 1024" fill="#ff7f13" version="1.1"  p-id="926" width="30" height="30" style="transform: translateY(20px);">
+            <path d="M292.864 90.038857A470.528 470.528 0 0 1 512 36.571429c262.107429 0 475.428571 213.321143 475.428571 475.428571s-213.321143 475.428571-475.428571 475.428571S36.571429 774.107429 36.571429 512c0-79.725714 20.041143-158.537143 58.148571-227.949714 11.556571-21.101714 14.994286-96.256-2.011429-133.193143C77.641143 117.942857 70.948571 91.428571 72.96 72.228571 73.691429 63.634286 79.762286 38.473143 116.150857 36.571429c47.030857 0 86.601143 8.704 124.708572 26.514285 11.776 5.522286 48.384 28.781714 52.004571 26.953143zM158.829714 319.232A402.944 402.944 0 0 0 109.714286 512c0 221.842286 180.443429 402.285714 402.285714 402.285714s402.285714-180.443429 402.285714-402.285714S733.842286 109.714286 512 109.714286c-64.987429 0-126.976 14.994286-184.246857 44.580571-28.086857 14.482286-51.346286 7.826286-66.450286 1.389714a160.365714 160.365714 0 0 1-18.688-9.618285c-18.907429-10.898286-20.699429-12.068571-30.646857-16.713143a204.580571 204.580571 0 0 0-57.563429-17.408c1.353143 3.364571 2.925714 6.948571 4.754286 10.861714 26.331429 57.380571 21.869714 155.940571-0.329143 196.388572z" p-id="927"></path>
+            <path d="M438.857143 365.714286m54.857143 0l0 0q54.857143 0 54.857143 54.857143l0 36.571428q0 54.857143-54.857143 54.857143l0 0q-54.857143 0-54.857143-54.857143l0-36.571428q0-54.857143 54.857143-54.857143Z" p-id="928"></path>
+            <path d="M658.285714 365.714286m54.857143 0l0 0q54.857143 0 54.857143 54.857143l0 36.571428q0 54.857143-54.857143 54.857143l0 0q-54.857143 0-54.857143-54.857143l0-36.571428q0-54.857143 54.857143-54.857143Z" p-id="929"></path></svg>
+    </span>
+    <a class="fixedtool-1 on" style="cursor:pointer">品质<br>好货</a>
+    <a class="fixedtool-6" style="cursor:pointer">猜你<br>喜欢</a>
+    <a class="fixedtool-7 gotop" style="font-size: 12px;cursor:pointer;display: none;">^<br>顶部</a>
+    <a style="font-size: 12px;cursor:pointer;line-height: 40px;">反馈</a>
+    <a class="fixedtool-9" style="cursor:pointer">暴恐<br>举报</a>
+</div>
+<!--商品展示部分-->
+<div class="layer clearfix">
+    <div class="clearfix">
+        <div class="tbh-discover-goods">
+            <div class="goods-inner">
+                <h3 class="goods-hd mod-hd com-hd">
+                    <span class="total-title fl">有好货</span>
+                    <img class="mlogo fl" src="img/havegoods.png">
+                    <p></p>
+                </h3>
+                <ul class="list clearfix goods-list">
+                    <a href="taobao.html">
+                        <div class="img-wrapper">
+                            <img src="img/1.jpg_.png">
+                            <div class="mask"></div>
+                        </div>
+                        <div class="info">
+                            <h4>图片蒙层效果测试</h4>
+                            <p>一路行车，如果是不适相伴，那可能会酿成一些不可挽回的后果，所以您需要带上舒适陪伴您行车，这款能四季呵护您脊椎腰椎
+                                的腰靠无疑能给您带来行车途中的舒适体验，它的面料都是选用优质的运动针织面料，更亲近您的皮肤不会产生静电，它还能
+                                缓解您驾驶途中的疲劳感，让您一路舒适相伴。</p>
+                        </div>
+                    </a>
+                    <a href="taobao.html">
+                        <div class="img-wrapper">
+                            <img src="img/yhh_2.png">
+                            <div class="mask"></div>
+                        </div>
+                        <div class="info">
+                            <h4>好孩子 儿童安全座椅</h4>
+                            <p>侧撞防护系统，搭配宽大的座舱面积设计，保障乘坐安全又舒适。</p>
+                        </div>
+                    </a>
+                    <a href="taobao.html">
+                        <div class="img-wrapper">
+                            <img src="img/2.jpg_.png">
+                            <div class="mask"></div>
+                        </div>
+                        <div class="info">
+                            <h4>同车同伴车载头枕腰靠</h4>
+                            <p>一路行车，如果是不适相伴，那可能会酿成一些不可挽回的后果，所以您需要带上舒适陪伴您行车，这款能四季呵护您脊椎腰椎
+                                的腰靠无疑能给您带来行车途中的舒适体验，它的面料都是选用优质的运动针织面料，更亲近您的皮肤不会产生静电，它还能
+                                缓解您驾驶途中的疲劳感，让您一路舒适相伴。</p>
+                        </div>
+                    </a>
+                    <a href="taobao.html">
+                        <div class="img-wrapper">
+                            <img src="img/yhh_4.png">
+                            <div class="mask"></div>
+                        </div>
+                        <div class="info">
+                            <h4>SINOMAX海绵床垫 </h4>
+                            <p>来自香港的品牌——赛诺，床垫采用优质海绵制造，比棉絮更舒服，贴合身体，触感舒适，同时具有吸音的效果，带来安静的睡眠，充分释放身体压力，给予恰到好处的支撑。</p>
+                        </div>
+                    </a>
+                    <a href="taobao.html">
+                        <div class="img-wrapper">
+                            <img src="img/yhh_5.png">
+                            <div class="mask"></div>
+                        </div>
+                        <div class="info">
+                            <h4>鬼塚虎 麂皮材质运动鞋</h4>
+                            <p>此款跑鞋采用了麂皮材质打造鞋面，提供出色的缓震性能，缔造出色缓降性能。</p>
+                        </div>
+                    </a>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="layer">
+    <div class="layer-inner clearfix">
+        <div class="tbh-hotsale">
+            <h3 class="hotsale-hd mod-hd bar-hd">
+                <span class="total-title fl" id="cnxh">猜你喜欢</span>
+                <img class="mlogo fl" src="img/introduce.png">
+            </h3>
+            <div class="list clearfix">
+                <div class="item">
+                    <a class="hotsale-item">
+                        <div class="img-wrapper">
+                            <img src="img/1.jpg_.png">
+                        </div>
+                        <h4>
+                        <img src="img/s12.png">
+                        日本不锈钢切蛋器多功能分蛋器花式皮蛋开蛋器松花蛋鸡蛋切片神器
+                        </h4>
+                    </a>
+                    <p class="info">
+                        <span class="marks hotsale-hide"></span>
+                        <span class="price"><em>¥</em>16</span>
+                    </p>
+                </div>
+                <div class="item">
+                    <a class="hotsale-item">
+                        <div class="img-wrapper">
+                            <img src="img/1.jpg_.png">
+                        </div>
+                        <h4>
+                            <img src="img/s12.png">
+                            日本不锈钢切蛋器多功能分蛋器花式皮蛋开蛋器松花蛋鸡蛋切片神器
+                        </h4>
+                    </a>
+                    <p class="info">
+                        <span class="marks hotsale-hide"></span>
+                        <span class="price"><em>¥</em>16</span>
+                    </p>
+                </div>
+                <div class="item">
+                    <a class="hotsale-item">
+                        <div class="img-wrapper">
+                            <img src="img/6.jpg_.png">
+                        </div>
+                        <h4>
+                            白色磨砂手工做旧北欧复古粗陶圆形平盘子 粗陶汤盘景德镇手工盘
+                        </h4>
+                    </a>
+                    <p class="info">
+                        <span class="marks hotsale-hide"></span>
+                        <span class="price"><em>¥</em>87.22</span>
+                    </p>
+                </div>
+                <div class="item">
+                    <a class="hotsale-item">
+                        <div class="img-wrapper">
+                            <img src="img/10.png">
+                        </div>
+                        <h4>
+                            <img src="img/s12.png">
+                            山西平定土砂锅高岭土煲汤锅家用陶瓷炖锅明火耐高温煮肉沙锅包邮
+                        </h4>
+                    </a>
+                    <p class="info">
+                        <span class="marks hotsale-hide"></span>
+                        <span class="price"><em>¥</em>138</span>
+                    </p>
+                </div>
+                <div class="item">
+                    <a class="hotsale-item">
+                        <div class="img-wrapper">
+                            <img src="img/1.jpg_.png">
+                        </div>
+                        <h4>
+                            <img src="img/s12.png">
+                            日本不锈钢切蛋器多功能分蛋器花式皮蛋开蛋器松花蛋鸡蛋切片神器
+                        </h4>
+                    </a>
+                    <p class="info">
+                        <span class="marks hotsale-hide"></span>
+                        <span class="price"><em>¥</em>16</span>
+                    </p>
+                </div>
+                <div class="item">
+                    <a class="hotsale-item">
+                        <div class="img-wrapper">
+                            <img src="img/11.png">
+                        </div>
+                        <h4>
+                            <img src="img/s12.png">
+                            德国WMF平底锅不粘锅麦饭石煎锅家用牛排煎锅煎蛋燃气灶适用不沾
+                        </h4>
+                    </a>
+                    <p class="info">
+                        <span class="marks hotsale-hide"></span>
+                        <span class="price"><em>¥</em>229</span>
+                    </p>
+                </div>
+                <div class="item">
+                    <a class="hotsale-item">
+                        <div class="img-wrapper">
+                            <img src="img/3.jpg_.png" style="height: 215px;">
+                        </div>
+                        <h4>
+                            <img src="img/s12.png">
+                            特 丽芙 新古典小鸟对望糖罐马卡龙色陶瓷罐调料瓶罐厨房储物罐
+                        </h4>
+                    </a>
+                    <p class="info">
+                        <span class="marks hotsale-hide"></span>
+                        <span class="price"><em>¥</em>29.9</span>
+                    </p>
+                </div>
+                <div class="item">
+                    <a class="hotsale-item">
+                        <div class="img-wrapper">
+                            <img src="img/1.jpg_.png">
+                        </div>
+                        <h4>
+                            <img src="img/s12.png">
+                            日本不锈钢切蛋器多功能分蛋器花式皮蛋开蛋器松花蛋鸡蛋切片神器
+                        </h4>
+                    </a>
+                    <p class="info">
+                        <span class="marks hotsale-hide"></span>
+                        <span class="price"><em>¥</em>16</span>
+                    </p>
+                </div>
+                <div class="item">
+                    <a class="hotsale-item">
+                        <div class="img-wrapper">
+                            <img src="img/1.jpg_.png">
+                        </div>
+                        <h4>
+                            <img src="img/s12.png">
+                            日本不锈钢切蛋器多功能分蛋器花式皮蛋开蛋器松花蛋鸡蛋切片神器
+                        </h4>
+                    </a>
+                    <p class="info">
+                        <span class="marks hotsale-hide"></span>
+                        <span class="price"><em>¥</em>16</span>
+                    </p>
+                </div>
+                <div class="item">
+                    <a class="hotsale-item">
+                        <div class="img-wrapper">
+                            <img src="img/1.jpg_.png">
+                        </div>
+                        <h4>
+                            <img src="img/s12.png">
+                            日本不锈钢切蛋器多功能分蛋器花式皮蛋开蛋器松花蛋鸡蛋切片神器
+                        </h4>
+                    </a>
+                    <p class="info">
+                        <span class="marks hotsale-hide"></span>
+                        <span class="price"><em>¥</em>16</span>
+                    </p>
+                </div>
+                <div class="item">
+                    <a class="hotsale-item">
+                        <div class="img-wrapper">
+                            <img src="img/4.jpg_.png">
+                        </div>
+                        <h4>
+                            传统粗糙单柄煲仔饭砂锅商用陶土砂锅煲炭炉火炉土锅沙锅炖锅瓦煲
+                        </h4>
+                    </a>
+                    <p class="info">
+                        <span class="marks hotsale-hide"></span>
+                        <span class="price"><em>¥</em>9.9</span>
+                    </p>
+                </div>
+                <div class="item">
+                    <a class="hotsale-item">
+                        <div class="img-wrapper">
+                            <img src="img/1.jpg_.png">
+                        </div>
+                        <h4>
+                            <img src="img/s12.png">
+                            日本不锈钢切蛋器多功能分蛋器花式皮蛋开蛋器松花蛋鸡蛋切片神器
+                        </h4>
+                    </a>
+                    <p class="info">
+                        <span class="marks hotsale-hide"></span>
+                        <span class="price"><em>¥</em>16</span>
+                    </p>
+                </div>
+                <div class="item">
+                    <a class="hotsale-item">
+                        <div class="img-wrapper">
+                            <img src="img/1.jpg_.png">
+                        </div>
+                        <h4>
+                            <img src="img/s12.png">
+                            日本不锈钢切蛋器多功能分蛋器花式皮蛋开蛋器松花蛋鸡蛋切片神器
+                        </h4>
+                    </a>
+                    <p class="info">
+                        <span class="marks hotsale-hide"></span>
+                        <span class="price"><em>¥</em>16</span>
+                    </p>
+                </div>
+                <div class="item">
+                    <a class="hotsale-item">
+                        <div class="img-wrapper">
+                            <img src="img/5.jpg_.png">
+                        </div>
+                        <h4>
+                            <img src="img/s12.png">
+                            摩登主妇鸡蛋盒厨房家用加厚冰箱保鲜收纳盒长方形塑料水饺收纳盒
+                        </h4>
+                    </a>
+                    <p class="info">
+                        <span class="marks hotsale-hide"></span>
+                        <span class="price"><em>¥</em>14.8</span>
+                    </p>
+                </div>
+                <div class="item">
+                    <a class="hotsale-item">
+                        <div class="img-wrapper">
+                            <img src="img/1.jpg_.png">
+                        </div>
+                        <h4>
+                            <img src="img/s12.png">
+                            日本不锈钢切蛋器多功能分蛋器花式皮蛋开蛋器松花蛋鸡蛋切片神器
+                        </h4>
+                    </a>
+                    <p class="info">
+                        <span class="marks hotsale-hide"></span>
+                        <span class="price"><em>¥</em>16</span>
+                    </p>
+                </div>
+                <div class="item">
+                    <a class="hotsale-item">
+                        <div class="img-wrapper">
+                            <img src="img/1.jpg_.png">
+                        </div>
+                        <h4>
+                            <img src="img/s12.png">
+                            日本不锈钢切蛋器多功能分蛋器花式皮蛋开蛋器松花蛋鸡蛋切片神器
+                        </h4>
+                    </a>
+                    <p class="info">
+                        <span class="marks hotsale-hide"></span>
+                        <span class="price"><em>¥</em>16</span>
+                    </p>
+                </div>
+                <div class="item">
+                    <a class="hotsale-item">
+                        <div class="img-wrapper">
+                            <img src="img/1.jpg_.png">
+                        </div>
+                        <h4>
+                            <img src="img/s12.png">
+                            日本不锈钢切蛋器多功能分蛋器花式皮蛋开蛋器松花蛋鸡蛋切片神器
+                        </h4>
+                    </a>
+                    <p class="info">
+                        <span class="marks hotsale-hide"></span>
+                        <span class="price"><em>¥</em>16</span>
+                    </p>
+                </div>
+                <div class="item">
+                    <a class="hotsale-item">
+                        <div class="img-wrapper">
+                            <img src="img/7.jpg_.png">
+                        </div>
+                        <h4>
+                            保温杯子泡茶杯男士高颜值女水杯个人专用便携不锈钢小巧车载高档
+                        </h4>
+                    </a>
+                    <p class="info">
+                        <span class="marks hotsale-hide"></span>
+                        <span class="price"><em>¥</em>36</span>
+                    </p>
+                </div>
+                <div class="item">
+                    <a class="hotsale-item">
+                        <div class="img-wrapper">
+                            <img src="img/9.jpg_.png">
+                        </div>
+                        <h4>
+                            <img src="img/s12.png">
+                            居家家桌面收纳盒厨房杂物整理篮家用塑料化妆品储物盒零食收纳筐
+                        </h4>
+                    </a>
+                    <p class="info">
+                        <span class="marks hotsale-hide"></span>
+                        <span class="price"><em>¥</em>7.6</span>
+                    </p>
+                </div>
+                <div class="item">
+                    <a class="hotsale-item">
+                        <div class="img-wrapper">
+                            <img src="img/8.jpg_.png">
+                        </div>
+                        <h4>
+                            <img src="img/s12.png">
+                            切菜神器插丝家用土豆丝切丝器擦丝神器擦子擦土豆丝黄瓜切丝神器
+                        </h4>
+                    </a>
+                    <p class="info">
+                        <span class="marks hotsale-hide"></span>
+                        <span class="price"><em>¥</em>18.5</span>
+                    </p>
+                </div>
+            </div>
+            <div class="hotsale-ft">
+                <i class="hotsale-end" style="display: inline">
+                    END
+                </i>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="layer">
+    <div class="layer-inner">
+        <div class="tbh-helper">
+            <div class="helper">
+                <div class="mod">
+                    <div class="mod-wrap">
+                        <h4>
+                            <span>消费者保障</span>
+                        </h4>
+                        <ul class="normalcolorbs">
+                            <li>
+                                <a>保障范围</a>
+                            </li>
+                            <li>
+                                <a>退货退款流程</a>
+                            </li>
+                            <li>
+                                <a>服务中心</a>
+                            </li>
+                            <li>
+                                <a>更多特色服务</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="mod">
+                    <div class="mod-wrap">
+                        <h4>
+                            <span>消费者保障</span>
+                        </h4>
+                        <ul class="normalcolorbs">
+                            <li>
+                                <a>保障范围</a>
+                            </li>
+                            <li>
+                                <a>退货退款流程</a>
+                            </li>
+                            <li>
+                                <a>服务中心</a>
+                            </li>
+                            <li>
+                                <a>更多特色服务</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="mod">
+                    <div class="mod-wrap">
+                        <h4>
+                            <span>消费者保障</span>
+                        </h4>
+                        <ul class="normalcolorbs">
+                            <li>
+                                <a>保障范围</a>
+                            </li>
+                            <li>
+                                <a>退货退款流程</a>
+                            </li>
+                            <li>
+                                <a>服务中心</a>
+                            </li>
+                            <li>
+                                <a>更多特色服务</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="mod">
+                    <div class="mod-wrap">
+                        <h4>
+                            <span>消费者保障</span>
+                        </h4>
+                        <ul class="normalcolorbs">
+                            <li>
+                                <a>保障范围</a>
+                            </li>
+                            <li>
+                                <a>退货退款流程</a>
+                            </li>
+                            <li>
+                                <a>服务中心</a>
+                            </li>
+                            <li>
+                                <a>更多特色服务</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--底部提示和版权声明-->
+<div class="tb-footer tb-footer-with-logo">
+    <div class="tb-footer-hd" style="font-size: 0">
+        <p class="normalcolorbs lineh">
+            <span><a href="taobao.html">阿里巴巴集团</a></span><b>|</b>
+            <span><a href="taobao.html">淘宝网</a></span><b>|</b>
+            <span><a href="taobao.html">天猫</a></span><b>|</b>
+            <span><a href="taobao.html">聚划算</a></span><b>|</b>
+            <span><a href="taobao.html">全球速卖通</a></span><b>|</b>
+            <span><a href="taobao.html">阿里巴巴国际交易市场</a></span><b>|</b>
+            <span><a href="taobao.html">1688</a></span><b>|</b>
+            <span><a href="taobao.html">阿里妈妈</a></span><b>|</b>
+            <span><a href="taobao.html">飞猪</a></span><b>|</b>
+            <span><a href="taobao.html">淘小铺</a></span><b>|</b>
+            <span><a href="taobao.html">阿里云计算</a></span><b>|</b>
+            <span><a href="taobao.html">AliOS</a></span><b>|</b>
+            <span><a href="taobao.html">阿里通信</a></span><b>|</b>
+            <span><a href="taobao.html">一淘</a></span><b>|</b>
+            <span><a href="taobao.html">万网</a></span><b>|</b>
+            <span><a href="taobao.html">高德</a></span><b>|</b>
+            <span><a href="taobao.html">UC</a></span><b>|</b>
+            <span><a href="taobao.html">友盟</a></span><b>|</b>
+            <span><a href="taobao.html">阿里安全</a></span><b>|</b><br style="font-size: 12px;">
+            <span><a href="taobao.html">大麦网</a></span><b>|</b>
+            <span><a href="taobao.html">钉钉</a></span><b>|</b>
+            <span><a href="taobao.html">支付宝</a></span><b>|</b>
+            <span><a href="taobao.html">优酷</a></span><b>|</b>
+            <span><a href="taobao.html">土豆</a></span><b>|</b>
+            <span><a href="taobao.html">阿里健康</a></span><b>|</b>
+            <span><a href="taobao.html">阿里影业</a></span><b>|</b>
+            <span><a href="taobao.html">网商银行</a></span><b>|</b>
+        </p>
+    </div>
+    <div class="tb-footer-bd" style="font-size: 0">
+        <p class="normalcolorbs lineh">
+            <span><a href="taobao.html">关于淘宝</a></span>
+            <span><a href="taobao.html">营销中心</a></span>
+            <span><a href="taobao.html">廉正举报</a></span>
+            <span><a href="taobao.html">联系客服</a></span>
+            <span><a href="taobao.html">开放平台</a></span>
+            <span><a href="taobao.html">诚征英才</a></span>
+            <span><a href="taobao.html">联系我们</a></span>
+            <span><a href="taobao.html">隐私权政策</a></span>
+            <span><a href="taobao.html">法律声明</a></span>
+            <span><a href="taobao.html">知识产权</a></span>
+            <span><a href="taobao.html">不当竞争举报</a></span>
+            <span><a href="taobao.html">规则意见征集</a></span><b>|</b>
+            <em>© 2003-现在 Taobao.com 版权所有</em>
+        </p>
+        <p class="normalcolorbs lineh">
+            <span><a href="taobao.html">增值电信业务经营许可证：浙B2-20080224</a></span><b>|</b>
+            <span><a href="taobao.html">增值电信业务经营许可证（跨地区）：B2-20150210</a></span><b>|</b>
+            <span><a href="taobao.html">浙网文（2019）1033-086号</a></span><b>|</b>
+            <span>浙江省网络食品销售第三方平台提供者备案：浙网食A33010001</span><b>|</b>
+        </p>
+        <p class="normalcolorbs lineh">
+            <span>互联网药品信息服务资格证书（浙）-经营性-2018-0010</span><b>|</b>
+            <span>短消息类服务接入代码使用证书：号【2016】00154-A01</span><b>|</b>
+            <span>信息网络传播视听许可证：1109364号</span><b>|</b>
+            <span>出版物网络交易平台服务经营备案号：新出发浙备字第002号</span><b>|</b>
+        </p>
+        <p class="normalcolorbs lineh">
+            <a href="taobao.html">
+                <span class="tb-footer-mod" style="width: 20px;height: 20px;
+                 background-image: url(img/policelogo.png);background-size: 20px;"></span>
+            </a>
+            <span><a href="taobao.html">浙公网安备 33010002000078号</a></span><b>|</b>
+            <span><a href="taobao.html">浙B2-20080224-1</a></span><b>|</b>
+            <span>广播电视节目制作经营许可证（浙）字第01012号</span><b>|</b>
+            <span>市场名称登记证：工商网市字3301004120号</span><b>|</b>
+            <span>医疗器械网络交易服务第三方平台备案：（浙）网械平台备字[2018]第00004号</span><b>|</b>
+        </p>
+    </div>
+    <div class="tb-footer-ft">
+        <span><a href="taobao.html" class="tb-footer-mod" style="width: 30px; background-position: 0px 0px; background-image: url(img/bottom.jpg);"></a></span>
+        <span><a href="taobao.html" class="tb-footer-mod" style="width: 50px; background-position: -80px 0px; background-image: url(img/bottom.jpg);"></a></span>
+        <span><a href="taobao.html" class="tb-footer-mod" style="width: 83px; background-position: -140px 0px; background-image: url(img/bottom.jpg);"></a></span>
+        <span><a href="taobao.html" class="tb-footer-mod" style="width: 250px; background-position: 0px -18px; background-image: url(img/jubao.png);"></a></span>
+        <span><a href="taobao.html" class="tb-footer-mod" style="width: 105px; background-position: -650px 0px; background-image: url(img/bottom.jpg);"></a></span>
+        <span><a href="taobao.html" class="tb-footer-mod" style="width: 82px; background-position: -345px 0px; background-image: url(img/bottom.jpg);"></a></span>
+        <span><a href="taobao.html" class="tb-footer-mod" style="width: 97px; background-position: -761px 0px; background-image: url(img/bottom.jpg);"></a></span>
+        <span><a href="taobao.html" class="tb-footer-mod" style="width: 249px; background-position: -884px 0px; background-image: url(img/bottom.jpg);"></a></span>
+        <span><a href="taobao.html" class="tb-footer-mod" style="width: 249px; background-position: 0px 0px; background-image: url(img/bt3.jpg);"></a></span>
+    </div>
+</div>
+</body>
+</html>
